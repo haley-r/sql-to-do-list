@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/meyer-hard-reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script src="vendors/jquery-3.4.1.min.js"></script>
+    <script src="scripts/client.js"></script>
+    <title>SQL To Do App</title>
+</head>
+<body>
+    <h1>SQL To Do App</h1>
+    <section id="input-section">
+        <h2>Add A Task:</h2>
+        <label>task:</label>
+            <input type="text" placeholder="describe the task" required>
+        <label>category:</label>
+            <select>
+                <option value="general">general</option>
+                <option value="household">household</option>
+                <option value="coding">coding</option>
+                <option value="health">health</option>
+                <option value="financial">financial</option>
+                <option value="work">work</option>
+                <option value="family">family</option>
+                <option value="recreation">recreation</option>
+            </select>
+        <label>priority level:</label>
+            <select>
+                <option value="1">top priority</option>
+                <option value="2">high priority</option>
+                <option value="3">normal priority</option>
+                <option value="4">low priority</option>
+                <option value="5">i'm just procrastinating</option>
+            </select>
+        <button type="button" id="addTaskButton">add task</button>
+    </section>
+    <section id="display-section">
+        <h2>Tasks</h2>
+        <ul id="task-list">
+            <!--JQUERY WILL FILL THIS IN-->
+        </ul>
+    </section>
+</body>
+</html>
