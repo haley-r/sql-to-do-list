@@ -30,15 +30,26 @@ router.post('/', (req, res) => {
 //delete
 router.delete('/:id', (req, res) => {
     console.log('in /tasks/id DELETE with ', req.params.id);
-    //run this query on 'pool' db to get all tasks
+    //run this query on 'pool' db to delete selected task
     let query = 'DELETE FROM tasks WHERE "id" = $1';
     pool.query(query, [req.params.id]).then((results) => {
-        res.sendStatus(201);
+        res.sendStatus(200);
     }).catch((err) => {
         console.log(err);
         res.sendStatus(500);
     })//end query
 })//end DELETE
 //put
+router.put('/:id', (req, res) => {
+    console.log('in /tasks/id PUT with ', req.params.id);
+    //make query to run on db to update completed status
+    let query = `UPDATE tasks SET "completed" = true WHERE "id"=$1;`;
+    pool.query(query, [req.params.id]).then((results)=>{
+        res.sendStatus(200);
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(500);
+    })//end query
+})//end PUT
 //exports
 module.exports = router;

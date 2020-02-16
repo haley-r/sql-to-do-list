@@ -58,6 +58,19 @@ function addTask(){
 }//end addTask
 function completeTask(){
     console.log("in completeTask");
+    //target the id of the item to update 
+    let taskId = $(this).parent().data('id');
+    //ajax delete request
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/${taskId}`
+    }).then(function (response) {
+        console.log('back from PUT with:', response);
+        refreshTasks();
+    }).catch(function (err) {
+        console.log(err);
+        alert('could not delete task');
+    })//end ajax
 }//end completeTask
 function deleteTask() {
     console.log("in deleteTask");
