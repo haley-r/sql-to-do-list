@@ -60,6 +60,7 @@ function completeTask(){
     console.log("in completeTask");
     //target the id of the item to update 
     let taskId = $(this).parent().data('id');
+    // $(this).toggle();
     //ajax delete request
     $.ajax({
         type: 'PUT',

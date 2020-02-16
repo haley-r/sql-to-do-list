@@ -31,3 +31,7 @@ ul{
 .completed-true {
     color: rgb(212, 204, 182);
 }
+    /* if completed, dont show complete button */
+    .completed-true .completeButton {
+        display: none;
+    }
