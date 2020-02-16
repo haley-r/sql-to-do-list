@@ -22,7 +22,7 @@ function refreshTasks(){
         //loop through array and append as <li> to dom
         for (task of response){
             list.append(`
-            <li class="completed-${task.completed} data-id="${task.id}">
+            <li class="completed-${task.completed}" data-id="${task.id}">
             ${task.description}
             <button class="completeButton">done!</button>
             <button class="deleteButton">remove</button>
@@ -34,13 +34,14 @@ function refreshTasks(){
         alert('problem refreshing tasks');
     })//end AJAX
 }//end refreshTasks
-
 function addTask(){
     console.log('in addTask');
     //bundle inputs into object
     let newTask = {
         description: $('#descriptionIn').val()
     }
+    //empty input(s)
+    $('#descriptionIn').val('');
     //post request
     $.ajax({
         type: 'POST',
@@ -54,11 +55,23 @@ function addTask(){
         alert('unable to add task');
         console.log(err);
     })
-}
-
+}//end addTask
 function completeTask(){
     console.log("in completeTask");
-}
+}//end completeTask
 function deleteTask() {
     console.log("in deleteTask");
-}
+    //target the id of the item to remove 
+    let taskId = $(this).parent().data('id');
+    //ajax delete request
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${taskId}`
+    }).then( function( response ){
+        console.log('back from DELETE with:', response);
+        refreshTasks();
+    }).catch( function(err){
+        console.log(err);
+        alert('could not delete task');
+    })//end ajax
+}//end deleteTask
