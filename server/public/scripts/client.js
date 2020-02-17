@@ -4,18 +4,21 @@ function onReady(){
     refreshTasks();
     //attach click listeners
     $('#addTaskButton').on('click', addTask);
+    $('.view-by-btn').on('click', assignViewBy);
     $('#task-list').on('click', '.completeButton', completeTask);
     $('#task-list').on('click', '.deleteButton', deleteTask);
 }
 
+let viewByVariable = 'view-oldest';
+
 function refreshTasks(){
-    console.log('in refreshTasks');
+    console.log('viewByVariable is', viewByVariable);
     //get tasks as array of objects from db
     $.ajax({
         type: 'GET',
-        url: '/tasks'
+        url: `/tasks/${viewByVariable}`
     }).then( function (response){
-        console.log('back from /tasks GET');
+        console.log(`back from /tasks/${viewByVariable} GET`);
         //target and empty the ul
         let list = $('#task-list');
         list.empty();
@@ -23,7 +26,9 @@ function refreshTasks(){
         for (task of response){
             list.append(`
             <li class="completed-${task.completed}" data-id="${task.id}">
-            ${task.description}
+                <h3>${task.description}</h3>
+                <p>priority level: ${task.priority_level}</p>
+                <p>category: ${task.category}</p>
             <button class="completeButton">done!</button>
             <button class="deleteButton">remove</button>
             </li>
@@ -38,10 +43,15 @@ function addTask(){
     console.log('in addTask');
     //bundle inputs into object
     let newTask = {
-        description: $('#descriptionIn').val()
+        description: $('#descriptionIn').val(),
+        category: $('#categoryIn').val(),
+        priority_level: $('#priorityLevelIn').val()
     }
+    console.log('new task is:', newTask);
     //empty input(s)
     $('#descriptionIn').val('');
+    $('#categoryIn').val('');
+    $('#priorityLevelIn').val('');
     //post request
     $.ajax({
         type: 'POST',
@@ -89,3 +99,8 @@ function deleteTask() {
         alert('could not delete task');
     })//end ajax
 }//end deleteTask
+function assignViewBy(){
+    //store how user wants to view tasks in global variable, then show in that order
+    viewByVariable=$(this).attr('id');
+    refreshTasks();
+}

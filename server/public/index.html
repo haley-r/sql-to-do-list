@@ -15,8 +15,8 @@
         <h2>Add A Task:</h2>
         <label>task:</label>
             <input id="descriptionIn" type="text" placeholder="describe the task">
-        <!-- <label>category:</label>
-            <select>
+        <label>category:</label>
+            <select id="categoryIn">
                 <option value="general">general</option>
                 <option value="household">household</option>
                 <option value="coding">coding</option>
@@ -27,17 +27,22 @@
                 <option value="recreation">recreation</option>
             </select>
         <label>priority level:</label>
-            <select>
+            <select id="priorityLevelIn">
                 <option value="1">top priority</option>
                 <option value="2">high priority</option>
                 <option value="3">normal priority</option>
                 <option value="4">low priority</option>
                 <option value="5">i'm just procrastinating</option>
-            </select> -->
+            </select>
         <button type="button" id="addTaskButton">add task</button>
     </section>
     <section id="display-section">
         <h2>Tasks</h2>
+        <h3>view by:</h3>
+            <button class="view-by-btn" id="view-oldest">oldest to newest</button>
+            <button class="view-by-btn" id="view-newest">newest to oldest</button>
+            <button class="view-by-btn" id="view-priority">priority level</button>
+            <button class="view-by-btn" id="view-category">category</button>
         <ul id="task-list">
             <!--JQUERY WILL FILL THIS IN-->
         </ul>
