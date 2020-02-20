@@ -84,6 +84,7 @@ function completeTask(){
     })//end ajax
 }//end completeTask
 function deleteTask() {
+    popUp("are you sure you want to delete this?");
     console.log("in deleteTask");
     //target the id of the item to remove 
     let taskId = $(this).parent().data('id');
@@ -104,3 +105,16 @@ function assignViewBy(){
     viewByVariable=$(this).attr('id');
     refreshTasks();
 }
+function popUp(textString){
+    console.log('in popUp function');
+    $('body').append(`
+        <div class="pop-up">
+            <h3>${textString}</h3>
+            <p>this action cannot be undone</p>
+            <button class="confirm-btn">yes, I'm sure</button>
+            <button class="goback-btn">no, cancel this action</button>
+        </div>
+    `)
+}
+
+
