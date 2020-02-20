@@ -45,12 +45,14 @@ VALUES ('take the cats on a walk','health', 1),
 
 ## What it does:
 
-- `GET /treats` returns all treats from the database.
+- `GET /tasks/:path` returns all tasks, in the order specified (or if none is specified, from first created to latest created)
 
-- `DELETE /treats/<id>` Deletes a specific treat. The Mode Toggle button in the interface will display the delete button for each treat.
+- `POST /tasks` takes user input from the DOM and sends a task object to the database.
 
-- `POST /treats` expects a treat name, description and link to a url image. There are images provided in `/server/public/assets`, or the user can enter a url to web image.
+- `PUT /tasks/<id>` updates the task's completion status to 'true', which changes its class name to 'completed-true', which changes how it is displayed in the browser.
 
-- `PUT /treats/<id>` updates the treat description (the edit button is also displayed with the Mode Toggle button).
+- `DELETE /tasks/<id>` Deletes a specific task, identified with a data attribute connected to the delete button clicked.
+
+
 
 
