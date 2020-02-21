@@ -7,9 +7,12 @@ function onReady(){
     $('.view-by-btn').on('click', assignViewBy);
     $('#task-list').on('click', '.completeButton', completeTask);
     $('#task-list').on('click', '.deleteButton', deleteTask);
+    $('body').on('click', '.confirm-btn', confirmClick);
+    $('body').on('click', '.goback-btn', goBackClick);
 }
 
 let viewByVariable = 'view-oldest';
+let confirmationStatus = null;
 
 function refreshTasks(){
     console.log('viewByVariable is', viewByVariable);
@@ -88,10 +91,12 @@ function completeTask(){
     })//end ajax
 }//end completeTask
 function deleteTask() {
-    popUp("are you sure you want to delete this?");
-    console.log("in deleteTask");
+    if (confirm('this action cannot be undone. proceed?')===false){
+        return false;
+    }
     //target the id of the item to remove 
     let taskId = $(this).parent().data('id');
+    console.log(taskId);    
     //ajax delete request
     $.ajax({
         type: 'DELETE',
@@ -109,36 +114,16 @@ function assignViewBy(){
     viewByVariable=$(this).attr('id');
     refreshTasks();
 }
-function popUp(textString){
-    console.log('in popUp function');
-    $('body').append(`
-        <div class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `)
+
+function goBackClick(){
+    confirmationStatus = 'go-back';
+    console.log('confirmation status: ', confirmationStatus);
+    $('#confirmation').remove();
 }
 
-{/* <div class="modal">
-    <h3>${textString}</h3>
-    <p>this action cannot be undone</p>
-    <button class="confirm-btn">yes, I'm sure</button>
-    <button class="goback-btn">no, cancel this action</button>
-</div> */}
-
+function confirmClick(){
+    confirmationStatus = 'confirmed';
+    console.log('confirmation status: ', confirmationStatus);
+    $('#confirmation').remove();
+}
 
