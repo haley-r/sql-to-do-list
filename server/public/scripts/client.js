@@ -40,6 +40,10 @@ function refreshTasks(){
     })//end AJAX
 }//end refreshTasks
 function addTask(){
+    if ($('#descriptionIn').val()===''){
+        alert('you have to enter a task!');
+        return false;
+    }
     console.log('in addTask');
     //bundle inputs into object
     let newTask = {
@@ -108,13 +112,33 @@ function assignViewBy(){
 function popUp(textString){
     console.log('in popUp function');
     $('body').append(`
-        <div class="pop-up">
-            <h3>${textString}</h3>
-            <p>this action cannot be undone</p>
-            <button class="confirm-btn">yes, I'm sure</button>
-            <button class="goback-btn">no, cancel this action</button>
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
     `)
 }
+
+{/* <div class="modal">
+    <h3>${textString}</h3>
+    <p>this action cannot be undone</p>
+    <button class="confirm-btn">yes, I'm sure</button>
+    <button class="goback-btn">no, cancel this action</button>
+</div> */}
 
 
