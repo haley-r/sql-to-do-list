@@ -1,5 +1,4 @@
 # SQL To-Do App
-===
 
 This full-stack to-do list application allows users to input and sort by multiple parameters tasks which can be marked as complete or deleted with buttons. The task, including its completion status, is stored in a database accessed by the DOM with jQuery, Ajax, and database queries. This weekend project was a chance to practice requests/queries, git branching, and CSS features.
 
