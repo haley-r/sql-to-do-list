@@ -7,9 +7,12 @@ function onReady(){
     $('.view-by-btn').on('click', assignViewBy);
     $('#task-list').on('click', '.completeButton', completeTask);
     $('#task-list').on('click', '.deleteButton', deleteTask);
+    $('body').on('click', '.confirm-btn', confirmClick);
+    $('body').on('click', '.goback-btn', goBackClick);
 }
 
 let viewByVariable = 'view-oldest';
+let confirmationStatus = null;
 
 function refreshTasks(){
     console.log('viewByVariable is', viewByVariable);
@@ -40,6 +43,10 @@ function refreshTasks(){
     })//end AJAX
 }//end refreshTasks
 function addTask(){
+    if ($('#descriptionIn').val()===''){
+        alert('you have to enter a task!');
+        return false;
+    }
     console.log('in addTask');
     //bundle inputs into object
     let newTask = {
@@ -84,9 +91,12 @@ function completeTask(){
     })//end ajax
 }//end completeTask
 function deleteTask() {
-    console.log("in deleteTask");
+    if (confirm('this action cannot be undone. proceed?')===false){
+        return false;
+    }
     //target the id of the item to remove 
     let taskId = $(this).parent().data('id');
+    console.log(taskId);    
     //ajax delete request
     $.ajax({
         type: 'DELETE',
@@ -104,3 +114,16 @@ function assignViewBy(){
     viewByVariable=$(this).attr('id');
     refreshTasks();
 }
+
+function goBackClick(){
+    confirmationStatus = 'go-back';
+    console.log('confirmation status: ', confirmationStatus);
+    $('#confirmation').remove();
+}
+
+function confirmClick(){
+    confirmationStatus = 'confirmed';
+    console.log('confirmation status: ', confirmationStatus);
+    $('#confirmation').remove();
+}
+
