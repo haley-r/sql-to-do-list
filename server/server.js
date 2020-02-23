@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 //routes
 app.use('/tasks', tasks);
 //globals
-const port = 5000;
+const port = process.env.PORT || 5000;
 //server up
 app.listen(port, ()=>{
     console.log( 'server up on:', port );
