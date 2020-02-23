@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito|Shrikhand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Shrikhand&display=swap');
 body {
-    background-color: rgb(252, 241, 212);
+    background-color: rgb(252, 225, 234);
     text-align: center;
-    font-family: 'Nunito', sans-serif;
-
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 50px;
+    color: green;
       /* font: italic bold 12px/30px Georgia, serif; */
 
 
@@ -21,22 +22,60 @@ h2{
     font-size: 2em;
     color: green;
 }
+
 /* block styles*/
 section{
     margin: 30px;
+    padding: 10px;
+}
+#input-section{
+    background-color: ivory;
+    border: 3px solid green;
+    border-radius: 30px;
+    width: 300px;
+    margin: 20px auto;
+}
+.label-input, button{
+    margin-top: 1em;
 }
 /* list styles */
-ul{
-    list-style-type: disc;
-    text-align: left;
-    padding-left: 50px;
-}
+
 li {
-    margin-top: 1em;
+    background-color: ivory;
+    border: 3px solid green;
+    border-radius: 30px;
+    width: 70vw;
+    min-width: 400px;
+    margin: 20px auto;
+    padding: .5em;
+    text-align: center;
+}
+
+li p {
+    font-size: .8em;
+}
+
+label{
+    text-transform: uppercase;
+}
+button {
+    background-color: orange;
+    text-transform: uppercase;
+    color: green;
+    height: 2em;
+    border: none;
+    border-radius: 20px;
+}
+
+button:hover {
+    font-weight: bold;
 }
 /* toggleable classes */
 .completed-true {
-    color: rgb(212, 204, 182);
+    color: rgb(236, 241, 236);
+}
+.completed-false {
+    color: green;
 }
     /* if completed, dont show complete button */
     .completed-true .completeButton {

@@ -14,9 +14,12 @@
     <h1>SQL To Do App</h1>
     <section id="input-section">
         <h2>Add A Task:</h2>
-        <label>task:</label>
+        <div class="label-input">
+            <label>task:</label>
             <input id="descriptionIn" type="text" placeholder="describe the task">
-        <label>category:</label>
+        </div>
+        <div class="label-input">
+            <label>category:</label>
             <select id="categoryIn">
                 <option value="general">general</option>
                 <option value="household">household</option>
@@ -27,7 +30,9 @@
                 <option value="family">family</option>
                 <option value="recreation">recreation</option>
             </select>
-        <label>priority level:</label>
+        </div>
+        <div class="label-input">
+            <label>priority level:</label>
             <select id="priorityLevelIn">
                 <option value="1">top priority</option>
                 <option value="2">high priority</option>
@@ -35,6 +40,7 @@
                 <option value="4">low priority</option>
                 <option value="5">i'm just procrastinating</option>
             </select>
+        </div>
         <button type="button" id="addTaskButton">add task</button>
     </section>
     <section id="display-section">
