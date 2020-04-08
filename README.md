@@ -6,7 +6,7 @@ This full-stack to-do list application allows users to input and sort by multipl
 
 To see the fully functional site, please visit: [this deployment on heroku](https://haleyr-sql-todo.herokuapp.com/)
 
-![to-do app interface]()
+![to-do app interface](to-do-interface.png)
 
 ## Technologies Used
 
